@@ -1,0 +1,19 @@
+# CardioIA - Fase 5 | Dependencias do backend
+# Instalacao: pip install -r requirements.txt
+
+# --- Servidor web e API REST ---
+Flask==3.0.3
+flask-cors==4.0.1
+
+# --- Integracao com o IBM Watson Assistant (API v2) ---
+ibm-watson==8.1.0
+ibm-cloud-sdk-core==3.20.3
+
+# --- Configuracao por variaveis de ambiente ---
+python-dotenv==1.0.1
+
+# --- Cliente HTTP (dependencia transitiva explicitada para reprodutibilidade) ---
+requests==2.32.3
+
+# Observacao: o modulo de persistencia utiliza sqlite3, que faz parte da
+# biblioteca padrao do Python (>= 3.9) e nao requer instalacao adicional.
