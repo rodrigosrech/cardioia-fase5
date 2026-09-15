@@ -1,0 +1,33 @@
+# CardioIA - Fase 5 | Arquivos ignorados pelo controle de versao
+
+# Variaveis de ambiente e credenciais
+.env
+*.env
+!.env.example
+
+# Banco de dados local (SQLite)
+backend/*.db
+*.sqlite3
+
+# Ambiente virtual Python
+venv/
+env/
+.venv/
+
+# Cache e artefatos de execucao do Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# Arquivos de sistema operacional e editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
