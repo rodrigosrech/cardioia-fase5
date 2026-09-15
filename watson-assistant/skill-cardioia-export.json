@@ -1,0 +1,1757 @@
+{
+  "name": "CardioIA - Assistente Cardiologico Conversacional",
+  "description": "Skill de dialogo para triagem informativa inicial em cardiologia. Nao realiza diagnostico. Orienta o paciente e encaminha para atendimento humano ou emergencia quando aplicavel.",
+  "language": "pt-br",
+  "workspace_id": "cardioia-fase5-skill",
+  "status": "Available",
+  "learning_opt_out": false,
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2021-06-14"
+    },
+    "projeto": "CardioIA",
+    "fase": 5,
+    "dominio": "saude-cardiologia",
+    "escopo": "atendimento-inicial-informativo"
+  },
+  "intents": [
+    {
+      "intent": "saudacao",
+      "description": "Usuario inicia a conversa ou cumprimenta o assistente.",
+      "examples": [
+        {
+          "text": "oi"
+        },
+        {
+          "text": "ola"
+        },
+        {
+          "text": "bom dia"
+        },
+        {
+          "text": "boa tarde"
+        },
+        {
+          "text": "boa noite"
+        },
+        {
+          "text": "oi tudo bem"
+        },
+        {
+          "text": "ola preciso de ajuda"
+        },
+        {
+          "text": "e ai"
+        },
+        {
+          "text": "oi assistente"
+        },
+        {
+          "text": "comecar atendimento"
+        },
+        {
+          "text": "iniciar"
+        },
+        {
+          "text": "ola bom dia gostaria de tirar uma duvida"
+        }
+      ]
+    },
+    {
+      "intent": "despedida",
+      "description": "Usuario encerra a conversa.",
+      "examples": [
+        {
+          "text": "tchau"
+        },
+        {
+          "text": "ate logo"
+        },
+        {
+          "text": "ate mais"
+        },
+        {
+          "text": "encerrar"
+        },
+        {
+          "text": "finalizar atendimento"
+        },
+        {
+          "text": "pode encerrar"
+        },
+        {
+          "text": "era so isso tchau"
+        },
+        {
+          "text": "adeus"
+        },
+        {
+          "text": "boa noite ate amanha"
+        },
+        {
+          "text": "vou encerrar por aqui"
+        }
+      ]
+    },
+    {
+      "intent": "agradecimento",
+      "description": "Usuario agradece o assistente.",
+      "examples": [
+        {
+          "text": "obrigado"
+        },
+        {
+          "text": "obrigada"
+        },
+        {
+          "text": "muito obrigado"
+        },
+        {
+          "text": "valeu"
+        },
+        {
+          "text": "agradecido"
+        },
+        {
+          "text": "otimo obrigado pela ajuda"
+        },
+        {
+          "text": "perfeito obrigado"
+        },
+        {
+          "text": "voce me ajudou muito"
+        }
+      ]
+    },
+    {
+      "intent": "relato_dor_peito",
+      "description": "Usuario relata dor, aperto, pressao ou desconforto toracico.",
+      "examples": [
+        {
+          "text": "estou sentindo dor no peito"
+        },
+        {
+          "text": "sinto um aperto no peito"
+        },
+        {
+          "text": "tenho uma pressao no peito ha dois dias"
+        },
+        {
+          "text": "meu peito esta doendo"
+        },
+        {
+          "text": "dor toracica"
+        },
+        {
+          "text": "sinto um peso no peito quando subo escada"
+        },
+        {
+          "text": "queimacao no peito"
+        },
+        {
+          "text": "dor no peito que vai para o braco esquerdo"
+        },
+        {
+          "text": "desconforto no torax"
+        },
+        {
+          "text": "peito apertado desde ontem"
+        },
+        {
+          "text": "estou com uma pontada no peito"
+        },
+        {
+          "text": "sinto dor no peito ao fazer esforco"
+        }
+      ]
+    },
+    {
+      "intent": "relato_falta_ar",
+      "description": "Usuario relata dispneia, falta de ar ou cansaco respiratorio.",
+      "examples": [
+        {
+          "text": "estou com falta de ar"
+        },
+        {
+          "text": "sinto que nao consigo respirar direito"
+        },
+        {
+          "text": "fico ofegante ao caminhar"
+        },
+        {
+          "text": "tenho dispneia"
+        },
+        {
+          "text": "canso muito rapido quando subo escada"
+        },
+        {
+          "text": "falta de ar quando deito"
+        },
+        {
+          "text": "respiracao curta"
+        },
+        {
+          "text": "sinto o ar faltando a noite"
+        },
+        {
+          "text": "nao consigo respirar bem quando ando"
+        },
+        {
+          "text": "estou sem folego"
+        }
+      ]
+    },
+    {
+      "intent": "relato_palpitacao",
+      "description": "Usuario relata palpitacoes, taquicardia ou batimentos irregulares.",
+      "examples": [
+        {
+          "text": "meu coracao esta disparado"
+        },
+        {
+          "text": "sinto palpitacoes"
+        },
+        {
+          "text": "meu coracao acelera do nada"
+        },
+        {
+          "text": "taquicardia"
+        },
+        {
+          "text": "sinto o coracao batendo forte no peito"
+        },
+        {
+          "text": "batimentos irregulares"
+        },
+        {
+          "text": "meu coracao falha uma batida"
+        },
+        {
+          "text": "coracao acelerado em repouso"
+        },
+        {
+          "text": "pulso muito rapido"
+        },
+        {
+          "text": "sinto arritmia"
+        }
+      ]
+    },
+    {
+      "intent": "relato_tontura",
+      "description": "Usuario relata tontura, vertigem, escurecimento visual ou pre sincope.",
+      "examples": [
+        {
+          "text": "estou com tontura"
+        },
+        {
+          "text": "sinto vertigem quando levanto"
+        },
+        {
+          "text": "minha vista escurece"
+        },
+        {
+          "text": "sinto a cabeca leve"
+        },
+        {
+          "text": "quase desmaiei hoje"
+        },
+        {
+          "text": "tontura ao levantar da cama"
+        },
+        {
+          "text": "estou zonzo"
+        },
+        {
+          "text": "sensacao de desmaio"
+        },
+        {
+          "text": "fiquei tonto depois de tomar o remedio"
+        }
+      ]
+    },
+    {
+      "intent": "duvida_pressao_arterial",
+      "description": "Usuario tem duvidas sobre valores, medicao ou controle da pressao arterial.",
+      "examples": [
+        {
+          "text": "o que e pressao alta"
+        },
+        {
+          "text": "qual o valor normal da pressao"
+        },
+        {
+          "text": "como medir a pressao corretamente"
+        },
+        {
+          "text": "duvida sobre hipertensao"
+        },
+        {
+          "text": "quando a pressao e considerada elevada"
+        },
+        {
+          "text": "pressao baixa o que fazer"
+        },
+        {
+          "text": "quantas vezes por dia devo medir a pressao"
+        },
+        {
+          "text": "o que significa mmHg"
+        },
+        {
+          "text": "qual a pressao ideal para um adulto"
+        },
+        {
+          "text": "a partir de quanto e considerado hipertensao"
+        }
+      ]
+    },
+    {
+      "intent": "informar_pressao",
+      "description": "Usuario informa um valor de pressao arterial aferido.",
+      "examples": [
+        {
+          "text": "minha pressao esta 12 por 8"
+        },
+        {
+          "text": "medi 14 por 9 agora"
+        },
+        {
+          "text": "deu 160 por 100 no aparelho"
+        },
+        {
+          "text": "a pressao hoje foi 13 por 8"
+        },
+        {
+          "text": "aferi 10 por 6"
+        },
+        {
+          "text": "pressao 180 por 110"
+        },
+        {
+          "text": "meu resultado foi 12x8"
+        },
+        {
+          "text": "marcou 150/95 no medidor"
+        }
+      ]
+    },
+    {
+      "intent": "duvida_medicacao",
+      "description": "Usuario tem duvidas sobre medicamentos de uso cardiologico.",
+      "examples": [
+        {
+          "text": "posso parar de tomar o remedio da pressao"
+        },
+        {
+          "text": "esqueci de tomar o losartana"
+        },
+        {
+          "text": "para que serve o betabloqueador"
+        },
+        {
+          "text": "duvida sobre anticoagulante"
+        },
+        {
+          "text": "posso tomar o remedio em jejum"
+        },
+        {
+          "text": "efeito colateral da estatina"
+        },
+        {
+          "text": "posso dobrar a dose do remedio"
+        },
+        {
+          "text": "o medicamento da pressao pode ser tomado a noite"
+        },
+        {
+          "text": "esqueci a dose de ontem o que faco"
+        },
+        {
+          "text": "posso tomar anti inflamatorio com o remedio do coracao"
+        }
+      ]
+    },
+    {
+      "intent": "agendar_consulta",
+      "description": "Usuario solicita agendamento, remarcacao ou informacao sobre consultas.",
+      "examples": [
+        {
+          "text": "quero marcar uma consulta"
+        },
+        {
+          "text": "como agendar com cardiologista"
+        },
+        {
+          "text": "preciso remarcar minha consulta"
+        },
+        {
+          "text": "tem horario para essa semana"
+        },
+        {
+          "text": "quero agendar um exame"
+        },
+        {
+          "text": "gostaria de marcar um retorno"
+        },
+        {
+          "text": "agendamento"
+        },
+        {
+          "text": "quero consultar um medico"
+        },
+        {
+          "text": "tem vaga para amanha"
+        }
+      ]
+    },
+    {
+      "intent": "falar_com_atendente",
+      "description": "Usuario solicita atendimento humano.",
+      "examples": [
+        {
+          "text": "quero falar com um atendente"
+        },
+        {
+          "text": "me transfere para uma pessoa"
+        },
+        {
+          "text": "quero falar com um humano"
+        },
+        {
+          "text": "preciso falar com a enfermeira"
+        },
+        {
+          "text": "chama um medico"
+        },
+        {
+          "text": "atendimento humano"
+        },
+        {
+          "text": "nao quero falar com robo"
+        },
+        {
+          "text": "transferir para suporte"
+        }
+      ]
+    },
+    {
+      "intent": "confirmacao_sim",
+      "description": "Usuario confirma afirmativamente.",
+      "examples": [
+        {
+          "text": "sim"
+        },
+        {
+          "text": "isso mesmo"
+        },
+        {
+          "text": "exato"
+        },
+        {
+          "text": "pode ser"
+        },
+        {
+          "text": "claro"
+        },
+        {
+          "text": "com certeza"
+        },
+        {
+          "text": "sim por favor"
+        },
+        {
+          "text": "afirmativo"
+        },
+        {
+          "text": "quero sim"
+        }
+      ]
+    },
+    {
+      "intent": "negacao_nao",
+      "description": "Usuario responde negativamente.",
+      "examples": [
+        {
+          "text": "nao"
+        },
+        {
+          "text": "nao obrigado"
+        },
+        {
+          "text": "agora nao"
+        },
+        {
+          "text": "negativo"
+        },
+        {
+          "text": "nao preciso"
+        },
+        {
+          "text": "deixa pra depois"
+        },
+        {
+          "text": "nao quero"
+        }
+      ]
+    }
+  ],
+  "entities": [
+    {
+      "entity": "sintoma",
+      "description": "Sintomas cardiologicos relatados pelo paciente.",
+      "fuzzy_match": true,
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "dor_peito",
+          "synonyms": [
+            "dor no peito",
+            "dor toracica",
+            "aperto no peito",
+            "peso no peito",
+            "pressao no peito",
+            "queimacao no peito",
+            "desconforto no torax",
+            "pontada no peito",
+            "peito apertado"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "falta_ar",
+          "synonyms": [
+            "falta de ar",
+            "dispneia",
+            "sem folego",
+            "ofegante",
+            "respiracao curta",
+            "cansaco respiratorio",
+            "nao consigo respirar"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "palpitacao",
+          "synonyms": [
+            "palpitacao",
+            "palpitacoes",
+            "taquicardia",
+            "coracao acelerado",
+            "coracao disparado",
+            "batimento irregular",
+            "batimentos irregulares",
+            "arritmia",
+            "coracao batendo forte"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "tontura",
+          "synonyms": [
+            "tontura",
+            "tonto",
+            "zonzo",
+            "vertigem",
+            "cabeca leve",
+            "vista escurece",
+            "escurecimento visual"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "desmaio",
+          "synonyms": [
+            "desmaio",
+            "desmaiei",
+            "sincope",
+            "perdi a consciencia",
+            "apaguei",
+            "quase desmaiei",
+            "desmaiar",
+            "cheguei a desmaiar"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "suor_frio",
+          "synonyms": [
+            "suor frio",
+            "suando frio",
+            "sudorese",
+            "suor excessivo"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "nausea",
+          "synonyms": [
+            "nausea",
+            "enjoo",
+            "vontade de vomitar",
+            "enjoado"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "irradiacao_braco",
+          "synonyms": [
+            "dor no braco esquerdo",
+            "irradia para o braco",
+            "dor que vai para o braco",
+            "dor no ombro e braco",
+            "dor irradiando para a mandibula"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "inchaco_pernas",
+          "synonyms": [
+            "inchaco nas pernas",
+            "perna inchada",
+            "edema",
+            "pes inchados",
+            "tornozelo inchado"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "cansaco",
+          "synonyms": [
+            "cansaco",
+            "fadiga",
+            "canso facil",
+            "fraqueza"
+          ]
+        }
+      ]
+    },
+    {
+      "entity": "intensidade",
+      "description": "Intensidade percebida do sintoma relatado.",
+      "fuzzy_match": true,
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "leve",
+          "synonyms": [
+            "leve",
+            "fraca",
+            "fraco",
+            "suave",
+            "pouca",
+            "pouco",
+            "discreta",
+            "levinha",
+            "bem leve",
+            "quase nada"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "moderada",
+          "synonyms": [
+            "moderada",
+            "moderado",
+            "media",
+            "medio",
+            "razoavel",
+            "mais ou menos"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "intensa",
+          "synonyms": [
+            "intensa",
+            "intenso",
+            "forte",
+            "muito forte",
+            "insuportavel",
+            "gravissima",
+            "severa",
+            "severo",
+            "muito ruim",
+            "insuportavel demais",
+            "muito intensa",
+            "bem forte",
+            "horrivel",
+            "desesperadora"
+          ]
+        }
+      ]
+    },
+    {
+      "entity": "duracao",
+      "description": "Tempo de evolucao do sintoma.",
+      "fuzzy_match": true,
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "agora",
+          "synonyms": [
+            "agora",
+            "neste momento",
+            "ainda sinto",
+            "esta acontecendo",
+            "comecou agora"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "horas",
+          "synonyms": [
+            "ha algumas horas",
+            "hoje de manha",
+            "desde cedo",
+            "ha uma hora",
+            "hoje"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "dias",
+          "synonyms": [
+            "ha dois dias",
+            "desde ontem",
+            "ha tres dias",
+            "faz alguns dias",
+            "ha dias"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "semanas",
+          "synonyms": [
+            "ha semanas",
+            "faz um mes",
+            "ha muito tempo",
+            "ha meses",
+            "cronico"
+          ]
+        }
+      ]
+    },
+    {
+      "entity": "fator_desencadeante",
+      "description": "Situacao em que o sintoma aparece.",
+      "fuzzy_match": true,
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "esforco",
+          "synonyms": [
+            "ao subir escada",
+            "quando caminho",
+            "fazendo esforco",
+            "ao correr",
+            "na atividade fisica",
+            "quando me exercito",
+            "subo escada",
+            "subindo escada",
+            "subir escada",
+            "quando subo",
+            "ao caminhar",
+            "caminhando",
+            "andando",
+            "ao me esforcar",
+            "durante o esforco",
+            "quando faco esforco",
+            "no esforco"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "repouso",
+          "synonyms": [
+            "em repouso",
+            "parado",
+            "sentado",
+            "deitado",
+            "sem fazer nada",
+            "dormindo",
+            "ate parado",
+            "mesmo parado",
+            "mesmo em repouso",
+            "sem esforco",
+            "quando deito",
+            "ao deitar",
+            "a noite deitado"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "emocional",
+          "synonyms": [
+            "quando fico nervoso",
+            "estresse",
+            "ansiedade",
+            "quando me irrito",
+            "nervosismo"
+          ]
+        }
+      ]
+    },
+    {
+      "entity": "classe_medicamento",
+      "description": "Classes de medicamentos de uso cardiologico citadas pelo usuario.",
+      "fuzzy_match": true,
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "anti_hipertensivo",
+          "synonyms": [
+            "remedio de pressao",
+            "remedio da pressao",
+            "anti hipertensivo",
+            "losartana",
+            "enalapril",
+            "captopril",
+            "anlodipino",
+            "hidroclorotiazida"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "betabloqueador",
+          "synonyms": [
+            "betabloqueador",
+            "atenolol",
+            "propranolol",
+            "carvedilol",
+            "metoprolol"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "estatina",
+          "synonyms": [
+            "estatina",
+            "sinvastatina",
+            "atorvastatina",
+            "rosuvastatina",
+            "remedio de colesterol"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "anticoagulante",
+          "synonyms": [
+            "anticoagulante",
+            "varfarina",
+            "marevan",
+            "rivaroxabana",
+            "xarelto",
+            "aspirina",
+            "antiagregante"
+          ]
+        }
+      ]
+    },
+    {
+      "entity": "unidade_medida",
+      "description": "Unidades clinicas mencionadas.",
+      "fuzzy_match": false,
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "mmHg",
+          "synonyms": [
+            "mmhg",
+            "milimetros de mercurio"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "bpm",
+          "synonyms": [
+            "bpm",
+            "batimentos por minuto"
+          ]
+        }
+      ]
+    },
+    {
+      "entity": "pressao_arterial",
+      "description": "Valor de pressao arterial informado no formato sistolica por diastolica.",
+      "fuzzy_match": false,
+      "values": [
+        {
+          "type": "patterns",
+          "value": "medida_pa",
+          "patterns": [
+            "\\b(\\d{1,3})\\s*(?:x|por|/)\\s*(\\d{1,3})\\b"
+          ]
+        }
+      ]
+    }
+  ],
+  "counterexamples": [
+    {
+      "text": "qual a previsao do tempo hoje"
+    },
+    {
+      "text": "quanto custa um carro novo"
+    },
+    {
+      "text": "me conta uma piada"
+    },
+    {
+      "text": "qual o resultado do jogo de ontem"
+    },
+    {
+      "text": "quero pedir uma pizza"
+    },
+    {
+      "text": "me ajuda com meu dever de matematica"
+    },
+    {
+      "text": "qual o valor do dolar"
+    },
+    {
+      "text": "voce e um robo de verdade"
+    }
+  ],
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Boas-vindas",
+      "dialog_node": "node_welcome",
+      "conditions": "welcome",
+      "parent": null,
+      "previous_sibling": null,
+      "context": {
+        "etapa_atendimento": "abertura",
+        "sintoma_principal": null,
+        "encaminhamento": null
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "selection_policy": "sequential",
+            "values": [
+              {
+                "text": "Ola! Sou o assistente virtual do CardioIA. Posso ajudar voce a organizar informacoes sobre sintomas cardiologicos, pressao arterial, uso de medicamentos e agendamento de consultas.\n\nIMPORTANTE: eu nao realizo diagnosticos e nao substituo a avaliacao de um profissional de saude. Em caso de emergencia, ligue imediatamente para o SAMU (192).\n\nComo posso ajudar voce hoje?"
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 0
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Alerta de emergencia (sinais de alarme)",
+      "dialog_node": "node_emergencia",
+      "conditions": "@sintoma:desmaio || @sintoma:suor_frio || @sintoma:irradiacao_braco || @intensidade:intensa && @sintoma:dor_peito || @intensidade:intensa && @sintoma:falta_ar",
+      "parent": null,
+      "previous_sibling": "node_welcome",
+      "context": {
+        "encaminhamento": "emergencia",
+        "etapa_atendimento": "triagem_urgente"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "ATENCAO: os sinais que voce descreveu podem indicar uma situacao de urgencia cardiologica.\n\nInterrompa esta conversa e procure atendimento medico imediato:\n- Ligue para o SAMU no numero 192; ou\n- Dirija-se ao pronto-socorro mais proximo, preferencialmente acompanhado.\n\nEnquanto aguarda: permaneca em repouso, evite esforcos e nao dirija. Nao tome nenhum medicamento por conta propria.\n\nEste alerta e informativo e nao constitui diagnostico."
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 1,
+        "regra": "sinais_de_alarme"
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Saudacao",
+      "dialog_node": "node_saudacao",
+      "conditions": "#saudacao",
+      "parent": null,
+      "previous_sibling": "node_emergencia",
+      "context": {
+        "etapa_atendimento": "abertura"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Ola! Que bom falar com voce. Sou o assistente do CardioIA e posso ajudar com informacoes sobre sintomas, pressao arterial, medicamentos e agendamentos.\n\nLembre-se: nao forneco diagnostico. Sobre o que voce gostaria de falar?"
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 5
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Relato de dor no peito",
+      "dialog_node": "node_dor_peito",
+      "conditions": "#relato_dor_peito || @sintoma:dor_peito",
+      "parent": null,
+      "previous_sibling": "node_saudacao",
+      "context": {
+        "sintoma_principal": "dor_peito",
+        "etapa_atendimento": "coleta_sintoma"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Entendi que voce esta sentindo desconforto no peito. Para organizar melhor essas informacoes, me diga: a dor e leve, moderada ou intensa?\n\nSe a dor for intensa, surgir em repouso, irradiar para o braco ou mandibula, ou vier acompanhada de suor frio e falta de ar, procure atendimento de emergencia imediatamente (SAMU 192)."
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 10
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Dor no peito - intensa",
+      "dialog_node": "node_dp_intensa",
+      "conditions": "@intensidade:intensa",
+      "parent": "node_dor_peito",
+      "previous_sibling": null,
+      "context": {
+        "encaminhamento": "emergencia"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Dor toracica de forte intensidade e considerada um sinal de alarme e exige avaliacao imediata.\n\nProcure o pronto-socorro agora ou ligue para o SAMU (192). Nao dirija e nao aguarde a dor passar sozinha.\n\nRegistrei esta ocorrencia como prioridade alta no seu atendimento."
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 11
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Dor no peito - leve ou moderada",
+      "dialog_node": "node_dp_leve_moderada",
+      "conditions": "@intensidade:leve || @intensidade:moderada",
+      "parent": "node_dor_peito",
+      "previous_sibling": "node_dp_intensa",
+      "context": {
+        "encaminhamento": "consulta_eletiva"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Obrigado pela informacao. Registrei: desconforto toracico de intensidade leve a moderada.\n\nOrientacoes gerais:\n- Observe se a dor piora com esforco fisico e se melhora com repouso.\n- Anote horario, duracao e situacao em que a dor aparece.\n- Evite automedicacao.\n\nRecomendo agendar uma consulta com cardiologista para avaliacao. Deseja que eu explique como fazer o agendamento?"
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 12
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Dor no peito - intensidade nao informada",
+      "dialog_node": "node_dp_anything_else",
+      "conditions": "anything_else",
+      "parent": "node_dor_peito",
+      "previous_sibling": "node_dp_leve_moderada",
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Nao consegui identificar a intensidade da dor. Voce poderia responder com uma das opcoes: leve, moderada ou intensa?\n\nSe preferir, posso transferir voce para um atendente humano."
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 13
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Relato de falta de ar",
+      "dialog_node": "node_falta_ar",
+      "conditions": "#relato_falta_ar || @sintoma:falta_ar",
+      "parent": null,
+      "previous_sibling": "node_dor_peito",
+      "context": {
+        "sintoma_principal": "falta_ar",
+        "etapa_atendimento": "coleta_sintoma"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Entendi que voce esta com falta de ar. Essa queixa pode ter varias causas e o contexto ajuda muito na avaliacao.\n\nA falta de ar aparece durante esforco (caminhar, subir escadas) ou tambem em repouso? E ela e leve, moderada ou intensa?\n\nSe a falta de ar for intensa, surgir de repente ou impedir voce de falar frases completas, procure atendimento de emergencia (SAMU 192)."
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 20
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Falta de ar - intensa",
+      "dialog_node": "node_fa_intensa",
+      "conditions": "@intensidade:intensa || @fator_desencadeante:repouso",
+      "parent": "node_falta_ar",
+      "previous_sibling": null,
+      "context": {
+        "encaminhamento": "emergencia"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Falta de ar intensa ou que ocorre em repouso e um sinal de alerta que exige avaliacao imediata.\n\nProcure o pronto-socorro ou ligue para o SAMU (192). Mantenha-se sentado, com o tronco elevado, e evite esforcos ate ser atendido."
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 21
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Falta de ar - relacionada a esforco",
+      "dialog_node": "node_fa_esforco",
+      "conditions": "@fator_desencadeante:esforco || @intensidade:leve || @intensidade:moderada",
+      "parent": "node_falta_ar",
+      "previous_sibling": "node_fa_intensa",
+      "context": {
+        "encaminhamento": "consulta_eletiva"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Registrei: falta de ar associada a esforco, de intensidade leve a moderada.\n\nOrientacoes gerais:\n- Anote a partir de qual esforco o sintoma aparece (por exemplo, um lance de escada).\n- Observe se ha inchaco nas pernas ou ganho rapido de peso.\n- Evite esforcos intensos ate a avaliacao medica.\n\nEsse padrao merece avaliacao cardiologica eletiva. Deseja informacoes sobre agendamento?"
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 22
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Falta de ar - resposta nao compreendida",
+      "dialog_node": "node_fa_anything_else",
+      "conditions": "anything_else",
+      "parent": "node_falta_ar",
+      "previous_sibling": "node_fa_esforco",
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Nao consegui identificar a intensidade nem a situacao em que a falta de ar aparece.\n\nVoce poderia responder, por exemplo: \"leve\", \"intensa\", \"quando subo escada\" ou \"ate parado\"?\n\nSe preferir, digite \"falar com atendente\"."
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "tipo": "fallback_local"
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Relato de palpitacoes",
+      "dialog_node": "node_palpitacao",
+      "conditions": "#relato_palpitacao || @sintoma:palpitacao",
+      "parent": null,
+      "previous_sibling": "node_falta_ar",
+      "context": {
+        "sintoma_principal": "palpitacao",
+        "etapa_atendimento": "coleta_sintoma"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Entendi que voce esta sentindo palpitacoes ou alteracoes no ritmo do coracao.\n\nInformacoes uteis para o seu medico:\n- Ha quanto tempo isso acontece e com que frequencia.\n- Se comeca e termina de forma subita.\n- Se vem acompanhada de tontura, desmaio, dor no peito ou falta de ar.\n\nSe as palpitacoes vierem com desmaio, dor no peito ou falta de ar intensa, procure atendimento de emergencia (SAMU 192).\n\nVoce sente algum desses sintomas associados?"
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 30
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Palpitacao - sintomas associados confirmados",
+      "dialog_node": "node_palp_associado",
+      "conditions": "#confirmacao_sim || @sintoma:desmaio || @sintoma:tontura",
+      "parent": "node_palpitacao",
+      "previous_sibling": null,
+      "context": {
+        "encaminhamento": "emergencia"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Palpitacoes acompanhadas de tontura, desmaio, dor no peito ou falta de ar exigem avaliacao urgente.\n\nProcure um pronto-socorro ou ligue para o SAMU (192). Evite dirigir e permaneca acompanhado ate ser atendido."
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 31
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Palpitacao - sem sintomas associados",
+      "dialog_node": "node_palp_isolado",
+      "conditions": "#negacao_nao",
+      "parent": "node_palpitacao",
+      "previous_sibling": "node_palp_associado",
+      "context": {
+        "encaminhamento": "consulta_eletiva"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Registrei: palpitacoes sem sintomas associados no momento.\n\nOrientacoes gerais:\n- Reduza cafeina, energeticos, alcool e nicotina.\n- Anote os episodios: horario, duracao e o que voce estava fazendo.\n- Se possivel, conte os batimentos por minuto durante o episodio.\n\nLeve esse registro a uma consulta cardiologica. Posso explicar como agendar?"
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 32
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Palpitacao - resposta nao compreendida",
+      "dialog_node": "node_palp_anything_else",
+      "conditions": "anything_else",
+      "parent": "node_palpitacao",
+      "previous_sibling": "node_palp_isolado",
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Nao consegui compreender a sua resposta. Voce sente tontura, desmaio, dor no peito ou falta de ar junto com as palpitacoes? Responda \"sim\" ou \"nao\".\n\nSe preferir, digite \"falar com atendente\"."
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "tipo": "fallback_local"
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Relato de tontura",
+      "dialog_node": "node_tontura",
+      "conditions": "#relato_tontura || @sintoma:tontura",
+      "parent": null,
+      "previous_sibling": "node_palpitacao",
+      "context": {
+        "sintoma_principal": "tontura",
+        "etapa_atendimento": "coleta_sintoma"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Entendi que voce esta com tontura. Em contexto cardiologico, e importante observar se ela ocorre ao levantar rapidamente, se vem acompanhada de escurecimento visual ou se ja houve desmaio.\n\nOrientacoes gerais:\n- Levante-se devagar, em duas etapas (sentar, depois ficar de pe).\n- Mantenha boa hidratacao, salvo restricao medica.\n- Evite dirigir enquanto os episodios persistirem.\n\nSe voce chegou a desmaiar ou quase desmaiar, procure atendimento medico com urgencia. Isso aconteceu?"
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 40
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Tontura com sincope",
+      "dialog_node": "node_tontura_sincope",
+      "conditions": "#confirmacao_sim || @sintoma:desmaio",
+      "parent": "node_tontura",
+      "previous_sibling": null,
+      "context": {
+        "encaminhamento": "emergencia"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Episodios de desmaio ou pre desmaio precisam de avaliacao medica com urgencia, pois podem estar relacionados a alteracoes do ritmo cardiaco ou da pressao arterial.\n\nProcure um pronto-socorro hoje mesmo, preferencialmente acompanhado, e nao dirija."
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 41
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Tontura sem sincope",
+      "dialog_node": "node_tontura_simples",
+      "conditions": "#negacao_nao",
+      "parent": "node_tontura",
+      "previous_sibling": "node_tontura_sincope",
+      "context": {
+        "encaminhamento": "consulta_eletiva"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Registrei: tontura sem episodio de desmaio.\n\nSugiro anotar a frequencia dos episodios, a relacao com mudanca de posicao e os medicamentos em uso, pois alguns podem causar queda de pressao. Leve essas informacoes a uma consulta.\n\nPosso ajudar com mais alguma coisa?"
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 42
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Tontura - resposta nao compreendida",
+      "dialog_node": "node_tontura_anything_else",
+      "conditions": "anything_else",
+      "parent": "node_tontura",
+      "previous_sibling": "node_tontura_simples",
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Nao consegui compreender a sua resposta. Voce chegou a desmaiar ou quase desmaiar? Responda \"sim\" ou \"nao\".\n\nSe preferir, digite \"falar com atendente\"."
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "tipo": "fallback_local"
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Valor de pressao arterial informado",
+      "dialog_node": "node_informar_pressao",
+      "conditions": "@pressao_arterial || #informar_pressao",
+      "parent": null,
+      "previous_sibling": "node_tontura",
+      "context": {
+        "etapa_atendimento": "avaliacao_pa"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Recebi o valor de pressao arterial informado. Vou organizar essa informacao para voce."
+              }
+            ]
+          }
+        ]
+      },
+      "next_step": {
+        "behavior": "skip_user_input"
+      },
+      "metadata": {
+        "prioridade": 50,
+        "observacao": "Os valores sistolico e diastolico sao gravados em $pa_sistolica e $pa_diastolica."
+      }
+    },
+    {
+      "type": "standard",
+      "title": "PA - crise hipertensiva",
+      "dialog_node": "node_pa_crise",
+      "conditions": "$pa_sistolica >= 180 || $pa_diastolica >= 110",
+      "parent": "node_informar_pressao",
+      "previous_sibling": null,
+      "context": {
+        "classificacao_pa": "crise_hipertensiva",
+        "encaminhamento": "emergencia"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "O valor informado esta na faixa considerada de crise hipertensiva (a partir de 180 x 110 mmHg).\n\nProcure atendimento medico imediato, principalmente se houver dor no peito, falta de ar, dor de cabeca intensa, alteracao visual ou dificuldade para falar. Ligue para o SAMU (192) se houver qualquer um desses sinais.\n\nNao tome medicamentos extras por conta propria."
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 51
+      }
+    },
+    {
+      "type": "standard",
+      "title": "PA - elevada",
+      "dialog_node": "node_pa_elevada",
+      "conditions": "$pa_sistolica >= 140 || $pa_diastolica >= 90",
+      "parent": "node_informar_pressao",
+      "previous_sibling": "node_pa_crise",
+      "context": {
+        "classificacao_pa": "elevada",
+        "encaminhamento": "consulta_eletiva"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "O valor informado esta acima da faixa considerada usualmente normal (referencia geral: abaixo de 140 x 90 mmHg em medida de consultorio).\n\nOrientacoes gerais:\n- Repita a medida apos 5 minutos de repouso, sentado e com o braco apoiado.\n- Registre as medidas por alguns dias, sempre no mesmo horario.\n- Reduza o consumo de sal, alcool e mantenha atividade fisica conforme orientacao medica.\n\nUma unica medida elevada nao define hipertensao: o diagnostico depende de avaliacao medica. Deseja informacoes sobre agendamento de consulta?"
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 52
+      }
+    },
+    {
+      "type": "standard",
+      "title": "PA - baixa",
+      "dialog_node": "node_pa_baixa",
+      "conditions": "$pa_sistolica < 90 || $pa_diastolica < 60",
+      "parent": "node_informar_pressao",
+      "previous_sibling": "node_pa_elevada",
+      "context": {
+        "classificacao_pa": "baixa",
+        "encaminhamento": "consulta_eletiva"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "O valor informado esta abaixo da faixa usualmente considerada normal (referencia geral: 90 x 60 mmHg).\n\nSe voce estiver sem sintomas, isso pode nao representar problema. Porem, se houver tontura, fraqueza, visao turva ou sensacao de desmaio, procure avaliacao medica.\n\nMantenha hidratacao adequada e levante-se devagar."
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 53
+      }
+    },
+    {
+      "type": "standard",
+      "title": "PA - dentro da faixa esperada",
+      "dialog_node": "node_pa_normal",
+      "conditions": "$pa_sistolica && $pa_diastolica",
+      "parent": "node_informar_pressao",
+      "previous_sibling": "node_pa_baixa",
+      "context": {
+        "classificacao_pa": "adequada",
+        "encaminhamento": "acompanhamento"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "O valor informado esta dentro da faixa usualmente considerada adequada (referencia geral: abaixo de 140 x 90 mmHg e acima de 90 x 60 mmHg).\n\nContinue monitorando periodicamente e mantenha os habitos de vida saudaveis. Essa leitura isolada nao substitui o acompanhamento medico regular.\n\nPosso ajudar com mais alguma coisa?"
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 54
+      }
+    },
+    {
+      "type": "standard",
+      "title": "PA - valor nao identificado",
+      "dialog_node": "node_pa_sem_valor",
+      "conditions": "anything_else",
+      "parent": "node_informar_pressao",
+      "previous_sibling": "node_pa_normal",
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Nao consegui identificar os valores da medida. Informe no formato sistolica por diastolica, por exemplo: \"13 por 8\" ou \"130 por 80\".\n\nSe preferir, posso explicar como medir a pressao corretamente."
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 56
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Duvida sobre pressao arterial",
+      "dialog_node": "node_duvida_pressao",
+      "conditions": "#duvida_pressao_arterial",
+      "parent": null,
+      "previous_sibling": "node_informar_pressao",
+      "context": {
+        "etapa_atendimento": "educacao_pa"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Sobre pressao arterial, valores de referencia gerais em medida de consultorio para adultos:\n\n- Adequada: abaixo de 130 x 85 mmHg\n- Limitrofe: entre 130 x 85 e 139 x 89 mmHg\n- Elevada: a partir de 140 x 90 mmHg\n- Crise hipertensiva: a partir de 180 x 110 mmHg (procurar atendimento imediato)\n\nComo medir corretamente:\n1. Descanse sentado por 5 minutos antes da medida.\n2. Apoie o braco na altura do coracao.\n3. Nao fale durante a medicao.\n4. Evite cafe, cigarro e exercicio nos 30 minutos anteriores.\n\nEsses valores sao referencias gerais e podem variar conforme idade, gestacao e doencas associadas. Somente o medico pode interpretar o seu caso.\n\nSe quiser, informe a sua ultima medida (exemplo: 13 por 8) que eu organizo a informacao para voce."
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 55
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Duvida sobre medicacao",
+      "dialog_node": "node_medicacao",
+      "conditions": "#duvida_medicacao || @classe_medicamento",
+      "parent": null,
+      "previous_sibling": "node_duvida_pressao",
+      "context": {
+        "etapa_atendimento": "orientacao_medicamento",
+        "encaminhamento": "consulta_eletiva"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Sobre medicamentos, posso oferecer apenas orientacoes gerais, pois ajustes de dose e troca de medicacao sao decisoes exclusivas do medico responsavel.\n\nOrientacoes gerais de seguranca:\n- Nao interrompa nem altere doses por conta propria, mesmo sentindo-se bem.\n- Nunca dobre a dose para compensar um esquecimento.\n- Mantenha uma lista atualizada de tudo o que voce toma, incluindo suplementos.\n- Informe sempre o uso de anticoagulantes antes de qualquer procedimento.\n\nPara duvidas especificas sobre o seu medicamento, posso transferir voce para um atendente humano. Deseja que eu faca isso?"
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 60
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Agendamento de consulta",
+      "dialog_node": "node_agendamento",
+      "conditions": "#agendar_consulta",
+      "parent": null,
+      "previous_sibling": "node_medicacao",
+      "context": {
+        "etapa_atendimento": "agendamento",
+        "encaminhamento": "consulta_eletiva"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Posso orientar sobre o agendamento de consulta cardiologica.\n\nCanais disponiveis:\n1. Central de atendimento: 0800 000 0000 (segunda a sexta, das 8h as 18h)\n2. Portal do paciente CardioIA: area Agendamentos\n3. Atendimento presencial na unidade de referencia\n\nTenha em maos: documento com foto, cartao do convenio (se houver) e a lista de medicamentos em uso.\n\nSe a sua queixa for urgente, nao aguarde o agendamento eletivo: procure um pronto-socorro.\n\nDeseja que eu transfira voce para a central de agendamento agora?"
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 70
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Transferencia para atendente humano",
+      "dialog_node": "node_atendente",
+      "conditions": "#falar_com_atendente",
+      "parent": null,
+      "previous_sibling": "node_agendamento",
+      "context": {
+        "encaminhamento": "atendimento_humano",
+        "etapa_atendimento": "transferencia"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Claro. Vou encaminhar voce para um atendente humano da equipe CardioIA.\n\nProtocolo gerado e historico da conversa anexado ao atendimento. O tempo medio de espera e de 3 a 5 minutos no horario comercial.\n\nSe a sua situacao for urgente, nao aguarde: ligue para o SAMU (192)."
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 80
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Agradecimento",
+      "dialog_node": "node_agradecimento",
+      "conditions": "#agradecimento",
+      "parent": null,
+      "previous_sibling": "node_atendente",
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Fico feliz em ajudar. Lembre-se de que as informacoes fornecidas aqui sao educativas e nao substituem a avaliacao de um profissional de saude.\n\nPosso ajudar com mais alguma coisa?"
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 90
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Despedida",
+      "dialog_node": "node_despedida",
+      "conditions": "#despedida",
+      "parent": null,
+      "previous_sibling": "node_agradecimento",
+      "context": {
+        "etapa_atendimento": "encerramento"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "values": [
+              {
+                "text": "Foi um prazer atender voce. Cuide bem do seu coracao: mantenha o acompanhamento medico em dia, use os medicamentos conforme prescricao e procure atendimento imediato diante de sinais de alerta.\n\nAte logo!"
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 95
+      }
+    },
+    {
+      "type": "standard",
+      "title": "Fallback - nao compreendido",
+      "dialog_node": "node_anything_else",
+      "conditions": "anything_else",
+      "parent": null,
+      "previous_sibling": "node_despedida",
+      "context": {
+        "etapa_atendimento": "fallback"
+      },
+      "output": {
+        "generic": [
+          {
+            "response_type": "text",
+            "selection_policy": "sequential",
+            "values": [
+              {
+                "text": "Desculpe, nao consegui compreender a sua mensagem. Eu fui treinado para ajudar com temas cardiologicos.\n\nVoce pode tentar, por exemplo:\n- \"estou com dor no peito\"\n- \"minha pressao esta 14 por 9\"\n- \"tenho duvida sobre meu remedio\"\n- \"quero agendar uma consulta\"\n\nSe preferir, digite \"falar com atendente\" para ser transferido a um humano."
+              },
+              {
+                "text": "Ainda nao consegui entender. Para que eu possa ajudar, descreva o sintoma ou a duvida com outras palavras, ou digite \"falar com atendente\" para ser atendido por uma pessoa da equipe."
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "prioridade": 999,
+        "tipo": "fallback"
+      }
+    }
+  ]
+}
